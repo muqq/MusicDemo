@@ -1,4 +1,5 @@
 PODS:
+  - PureLayout (3.0.2)
   - Realm (3.7.6):
     - Realm/Headers (= 3.7.6)
   - Realm/Headers (3.7.6)
@@ -10,6 +11,7 @@ PODS:
   - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
+  - PureLayout
   - Realm
   - RxCocoa
   - RxSwift
@@ -17,17 +19,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - PureLayout
     - Realm
     - RxCocoa
     - RxSwift
     - SDWebImage
 
 SPEC CHECKSUMS:
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: ce72425f32cdf6b95b10642fccba4a868548755b
+PODFILE CHECKSUM: dbc5b757cf506705a91f9b75e671967a83d5d8b1
 
 COCOAPODS: 1.5.3

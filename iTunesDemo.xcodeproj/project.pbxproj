@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		598C9D75F6907D6053E32DC1 /* Pods_iTunesDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D07C02AC1BD9E93DAA8AAF3 /* Pods_iTunesDemo.framework */; };
+		D09714D121B6858E0052C8BA /* ResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09714D021B6858E0052C8BA /* ResponseItem.swift */; };
 		D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */; };
 		D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */; };
 		D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DF7D0421AD48520090DD2B /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		5D07C02AC1BD9E93DAA8AAF3 /* Pods_iTunesDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5D4DD09C0AECE04D217F99 /* Pods-iTunesDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTunesDemo/Pods-iTunesDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		984741986C4EA036EF214FA4 /* Pods_iTunesDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D09714D021B6858E0052C8BA /* ResponseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseItem.swift; sourceTree = "<group>"; };
 		D0DF7CFA21AD48510090DD2B /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				D0DF7D2121B66CCB0090DD2B /* Service.swift */,
+				D09714D021B6858E0052C8BA /* ResponseItem.swift */,
 				D0DF7D1D21B661F10090DD2B /* APIService.swift */,
 			);
 			path = Model;
@@ -251,6 +254,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iTunesDemo/Pods-iTunesDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -260,6 +264,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -300,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */,
+				D09714D121B6858E0052C8BA /* ResponseItem.swift in Sources */,
 				D0DF7D2021B66C260090DD2B /* BaseViewController.swift in Sources */,
 				D0DF7D2221B66CCB0090DD2B /* Service.swift in Sources */,
 				D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */,
@@ -467,7 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.n1.iTunesDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -486,7 +492,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.n1.iTunesDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

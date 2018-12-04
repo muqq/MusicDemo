@@ -18,6 +18,7 @@ class BaseViewController: UIViewController {
     }
     
     init(service: Service) {
+        self.service = service
         super.init(nibName: nil, bundle: nil)
     }
     
