@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		598C9D75F6907D6053E32DC1 /* Pods_iTunesDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D07C02AC1BD9E93DAA8AAF3 /* Pods_iTunesDemo.framework */; };
 		D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */; };
-		D0DF7D0021AD48510090DD2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFF21AD48510090DD2B /* ViewController.swift */; };
-		D0DF7D0321AD48510090DD2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DF7D0121AD48510090DD2B /* Main.storyboard */; };
+		D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */; };
 		D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DF7D0421AD48520090DD2B /* Assets.xcassets */; };
 		D0DF7D0821AD48520090DD2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DF7D0621AD48520090DD2B /* LaunchScreen.storyboard */; };
 		D0DF7D1321AD48520090DD2B /* iTunesDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7D1221AD48520090DD2B /* iTunesDemoTests.swift */; };
+		D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7D1D21B661F10090DD2B /* APIService.swift */; };
+		D0DF7D2021B66C260090DD2B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7D1F21B66C260090DD2B /* BaseViewController.swift */; };
+		D0DF7D2221B66CCB0090DD2B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7D2121B66CCB0090DD2B /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +34,16 @@
 		984741986C4EA036EF214FA4 /* Pods_iTunesDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DF7CFA21AD48510090DD2B /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0DF7CFF21AD48510090DD2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D0DF7D0221AD48510090DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		D0DF7D0421AD48520090DD2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DF7D0721AD48520090DD2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0DF7D0921AD48520090DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0DF7D0E21AD48520090DD2B /* iTunesDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DF7D1221AD48520090DD2B /* iTunesDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesDemoTests.swift; sourceTree = "<group>"; };
 		D0DF7D1421AD48520090DD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0DF7D1D21B661F10090DD2B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		D0DF7D1F21B66C260090DD2B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D0DF7D2121B66CCB0090DD2B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		D495383D707EE751D49AF9D3 /* Pods-iTunesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTunesDemo/Pods-iTunesDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,8 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */,
-				D0DF7CFF21AD48510090DD2B /* ViewController.swift */,
-				D0DF7D0121AD48510090DD2B /* Main.storyboard */,
+				D0DF7D2621B674320090DD2B /* ViewController */,
+				D0DF7D2521B674280090DD2B /* Model */,
 				D0DF7D0421AD48520090DD2B /* Assets.xcassets */,
 				D0DF7D0621AD48520090DD2B /* LaunchScreen.storyboard */,
 				D0DF7D0921AD48520090DD2B /* Info.plist */,
@@ -111,6 +115,24 @@
 				D0DF7D1421AD48520090DD2B /* Info.plist */,
 			);
 			path = iTunesDemoTests;
+			sourceTree = "<group>";
+		};
+		D0DF7D2521B674280090DD2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0DF7D2121B66CCB0090DD2B /* Service.swift */,
+				D0DF7D1D21B661F10090DD2B /* APIService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D0DF7D2621B674320090DD2B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */,
+				D0DF7D1F21B66C260090DD2B /* BaseViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		F7A32070044CEC7551F7F98F /* Pods */ = {
@@ -207,7 +229,6 @@
 			files = (
 				D0DF7D0821AD48520090DD2B /* LaunchScreen.storyboard in Resources */,
 				D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */,
-				D0DF7D0321AD48510090DD2B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +299,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0DF7D0021AD48510090DD2B /* ViewController.swift in Sources */,
+				D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */,
+				D0DF7D2021B66C260090DD2B /* BaseViewController.swift in Sources */,
+				D0DF7D2221B66CCB0090DD2B /* Service.swift in Sources */,
+				D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */,
 				D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,14 +326,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D0DF7D0121AD48510090DD2B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D0DF7D0221AD48510090DD2B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D0DF7D0621AD48520090DD2B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -12,10 +12,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var service: Service!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        
+        self.service = KKDemoService()
+        let categoryViewController = CategoryViewController(service: self.service)
+        let tabbarController = UITabBarController()
+        tabbarController.viewControllers = [categoryViewController]
+        self.window?.rootViewController = UINavigationController(rootViewController: tabbarController)
+        self.window?.makeKeyAndVisible()
         return true
     }
 
