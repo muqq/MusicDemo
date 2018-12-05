@@ -7,16 +7,59 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import PureLayout
+import RxDataSources
 
 class CategoryViewController: BaseViewController {
     
+    var tableView = UITableView()
+    var disposeBag = DisposeBag()
+    
+    let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Category>>(
+        configureCell: { (_, tv, indexPath, element) in
+            let cell = tv.dequeueReusableCell(withIdentifier: CategoryCell.cellIdentifier)!
+            cell.textLabel?.text = element.title
+            return cell
+    }, titleForHeaderInSection: { dataSource, sectionIndex in
+        return dataSource[sectionIndex].model
+    })
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = .white
-        //self.APIService.getCategoryList()
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.cellIdentifier)
+        self.view.addSubview(self.tableView)
+        self.tableView.autoPinEdgesToSuperviewEdges()
+        self.setupRX()
+        self.query()
     }
+    
+    private func setupRX() {
+        self.tableView.rx.itemSelected.map { indexPath in
+            return self.dataSource[indexPath]
+            }.subscribe(onNext: { (category) in
+                let categoryDetailViewController = CateogryDetailViewController(service: self.service)
+                self.navigationController?.pushViewController(categoryDetailViewController, animated: true)
+            }).disposed(by: disposeBag)
+    }
+    
+    private func query() {
+        let realm = AppDelegate.appDelegate().realm
+        self.APIService.getCateogries().catchError { (error) -> Observable<[Category]> in
+            let result = realm.objects(Category.self)
+            return Observable<[Category]>.just(Array(result))
+            }.map { (categories) -> [SectionModel<String, Category>] in
+                try! realm.write {
+                    realm.add(categories)
+                }
+                return [SectionModel.init(model: "Categories", items: categories)]
+            }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
+    }
+}
 
-
+class CategoryCell: UITableViewCell {
+    static let cellIdentifier = "categoryCell"
 }
 

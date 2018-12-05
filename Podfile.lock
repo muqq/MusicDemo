@@ -1,9 +1,16 @@
 PODS:
+  - Differentiator (3.0.2)
   - PureLayout (3.0.2)
   - Realm (3.7.6):
     - Realm/Headers (= 3.7.6)
   - Realm/Headers (3.7.6)
+  - RealmSwift (3.7.6):
+    - Realm (= 3.7.6)
   - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.0.2):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SDWebImage (4.4.2):
@@ -12,26 +19,33 @@ PODS:
 
 DEPENDENCIES:
   - PureLayout
-  - Realm
+  - RealmSwift
   - RxCocoa
+  - RxDataSources
   - RxSwift
   - SDWebImage
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Differentiator
     - PureLayout
     - Realm
+    - RealmSwift
     - RxCocoa
+    - RxDataSources
     - RxSwift
     - SDWebImage
 
 SPEC CHECKSUMS:
+  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
+  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: dbc5b757cf506705a91f9b75e671967a83d5d8b1
+PODFILE CHECKSUM: 0a402fd1c3f4aea9964f930441d21f43d413ab7b
 
 COCOAPODS: 1.5.3

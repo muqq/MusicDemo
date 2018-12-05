@@ -7,21 +7,29 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var service: Service!
+    var realm = try! Realm()
 
+    static func appDelegate() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         self.service = KKDemoService()
-        let categoryViewController = CategoryViewController(service: self.service)
-        let tabbarController = UITabBarController()
-        tabbarController.viewControllers = [categoryViewController]
+
         let _ = self.service.APIService.getToken().subscribe({ [weak self] (event) in
+            let categoryViewController = CategoryViewController(service: self!.service)
+            let tabbarController = UITabBarController()
+            tabbarController.view.backgroundColor = .white
+            tabbarController.viewControllers = [categoryViewController]
             self?.window?.rootViewController = UINavigationController(rootViewController: tabbarController)
             self?.window?.makeKeyAndVisible()
         })

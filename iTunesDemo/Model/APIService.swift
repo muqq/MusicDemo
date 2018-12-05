@@ -10,29 +10,66 @@ import RxSwift
 
 protocol APIService {
     func getToken() -> Single<String>
+    
+    func getCateogries() -> Observable<[Category]>
+}
+
+extension API {
+    func getCateogries() -> Observable<[Category]> {
+        return Observable<[Category]>.create({ observer -> Disposable in
+            let _ = self.sendRequest(path: Path.newReleaseCategories, method: HTTPMethod.get).subscribe(onSuccess: { (item: ResponseItem<[Category]>) in
+                observer.onNext(item.data!)
+                //single(.success(item.data!))
+            }, onError: { (error) in
+                observer.onError(error)
+                //single(.error(error))
+            })
+            return Disposables.create()
+        })
+    }
 }
 
 class API: APIService {
     
+
     private let APIID = "aaa496e0ea4f2bfb2beb899384f048f6"
     private let secret = "6a383b62e769cce6fdca9f736fde87cd"
     private let path = "https://api.kkbox.com/v1.1/"
+    private let tail = "?territory=TW&offset=0&limit=500"
     private var token: String?
     
-    private func sendRequest() {
-        guard let url = URL(string: path + Path.newReleaseCategories.rawValue) else {
-            return
-        }
-        var request = URLRequest(url: url)
-        let auth = "\(APIID):\(secret)".data(using: .utf8)!.base64EncodedString()
-        request.allHTTPHeaderFields = [
-            "Content-Type": "application/json",
-            "Authorization": "Bearer \(auth)"
-        ]
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-        }
-        task.resume()
+    private func sendRequest<T: Codable>(path: Path, method: HTTPMethod) -> Single<ResponseItem<T>> {
+        return Single<ResponseItem<T>>.create(subscribe: { single -> Disposable in
+            guard let token = self.token else {
+                single(.error(KKDEMOError.noToken))
+                return Disposables.create()
+            }
+            let url = URL(string: self.path + path.rawValue + self.tail)!
+            var request = URLRequest(url: url)
+            request.httpMethod = method.rawValue
+            request.allHTTPHeaderFields = [
+                "accept": "application/json",
+                "authorization": "Bearer \(token)"
+            ]
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                DispatchQueue.main.async {
+                    guard let data = data else {
+                        single(.error(KKDEMOError.noData))
+                        return
+                    }
+                    
+                    do {
+                        let responseItem = try JSONDecoder().decode(ResponseItem<T>.self, from: data)
+                        single(.success(responseItem))
+                    } catch {
+                        single(.error(KKDEMOError.decodeError))
+                    }
+                }
+            }
+            task.resume()
+            return Disposables.create { task.cancel() }
+        })
+        
     }
     
     func getToken() -> Single<String> {
@@ -50,12 +87,16 @@ class API: APIService {
             ]
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 DispatchQueue.main.async {
-                    let dict: [String: Any] = try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
+                    guard let data = data else {
+                        single(.error(KKDEMOError.noToken))
+                        return
+                    }
+                    let dict: [String: Any] = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
                     guard let token = dict["access_token"] as? String else {
                         single(.error(KKDEMOError.noToken))
                         return
                     }
-                    self?.token = token
+                    self?.token = token 
                     single(.success(token))
                 }
             }
@@ -67,8 +108,15 @@ class API: APIService {
 
 enum KKDEMOError: Error {
     case noToken
+    case decodeError
+    case noData
 }
 
 enum Path: String {
     case newReleaseCategories = "new-release-categories"
+}
+
+enum HTTPMethod: String {
+    case post = "POST"
+    case get = "GET"
 }
