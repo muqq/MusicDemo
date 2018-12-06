@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CateogryDetailViewController: BaseViewController {
     
+    var tableView = UITableView()
+    var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 }

@@ -14,20 +14,6 @@ protocol APIService {
     func getCateogries() -> Observable<[Category]>
 }
 
-extension API {
-    func getCateogries() -> Observable<[Category]> {
-        return Observable<[Category]>.create({ observer -> Disposable in
-            let _ = self.sendRequest(path: Path.newReleaseCategories, method: HTTPMethod.get).subscribe(onSuccess: { (item: ResponseItem<[Category]>) in
-                observer.onNext(item.data!)
-                //single(.success(item.data!))
-            }, onError: { (error) in
-                observer.onError(error)
-                //single(.error(error))
-            })
-            return Disposables.create()
-        })
-    }
-}
 
 class API: APIService {
     
@@ -38,8 +24,8 @@ class API: APIService {
     private let tail = "?territory=TW&offset=0&limit=500"
     private var token: String?
     
-    private func sendRequest<T: Codable>(path: Path, method: HTTPMethod) -> Single<ResponseItem<T>> {
-        return Single<ResponseItem<T>>.create(subscribe: { single -> Disposable in
+    internal func sendRequest<T: Codable>(path: Path, method: HTTPMethod) -> Single<ResponseListItem<T>> {
+        return Single<ResponseListItem<T>>.create(subscribe: { single -> Disposable in
             guard let token = self.token else {
                 single(.error(KKDEMOError.noToken))
                 return Disposables.create()
@@ -59,7 +45,7 @@ class API: APIService {
                     }
                     
                     do {
-                        let responseItem = try JSONDecoder().decode(ResponseItem<T>.self, from: data)
+                        let responseItem = try JSONDecoder().decode(ResponseListItem<T>.self, from: data)
                         single(.success(responseItem))
                     } catch {
                         single(.error(KKDEMOError.decodeError))

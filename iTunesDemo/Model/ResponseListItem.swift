@@ -6,7 +6,7 @@
 //  Copyright © 2018 n1. All rights reserved.
 //
 
-struct ResponseItem<T: Codable>: Codable {
+struct ResponseListItem<T: Codable>: Codable {
     let data: T?
     let paging: Paging
     let summary: Summary
@@ -15,8 +15,8 @@ struct ResponseItem<T: Codable>: Codable {
 struct Paging: Codable {
     let offset: Int
     let limit: Int
-    let previous: Int?
-    let next: Int?
+    let previous: String?
+    let next: String?
 }
 
 struct Summary: Codable {
