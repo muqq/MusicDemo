@@ -48,7 +48,7 @@ class CategoryViewController: BaseViewController {
     }
     
     private func query() {
-        let realm = AppDelegate.appDelegate().realm
+        let realm = AppDelegate.appDelegate().realm!
         self.APIService.getCateogries().catchError { (error) -> Observable<[Category]> in
             let result = realm.objects(Category.self)
             return Observable<[Category]>.just(Array(result))

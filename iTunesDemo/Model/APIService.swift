@@ -99,7 +99,7 @@ enum KKDEMOError: Error {
 }
 
 enum Path: String {
-    case newReleaseCategories = "new-release-categories"
+    case newReleaseCategories = "featured-playlist-categories"
 }
 
 enum HTTPMethod: String {

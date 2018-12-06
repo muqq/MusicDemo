@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var service: Service!
-    var realm = try! Realm()
+    var realm: Realm!
 
     static func appDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -22,9 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
+        self.window?.backgroundColor = .white
         self.service = KKDemoService()
 
+//        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+//            schemaVersion: 1,
+//            migrationBlock: { migration, oldSchemaVersion in
+//                if (oldSchemaVersion < 1) {
+//                    migration.enumerateObjects(ofType: Category.className()) { oldObject, newObject in
+//                        newObject!["images"] = []
+//                    }
+//                }
+//        })
+        
+        self.realm = try! Realm()
+        
         let _ = self.service.APIService.getToken().subscribe({ [weak self] (event) in
             let categoryViewController = CategoryViewController(service: self!.service)
             let tabbarController = UITabBarController()

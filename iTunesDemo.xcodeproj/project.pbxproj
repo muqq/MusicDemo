@@ -12,6 +12,8 @@
 		D09714D121B6858E0052C8BA /* ResponseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09714D021B6858E0052C8BA /* ResponseListItem.swift */; };
 		D09714D321B7A56E0052C8BA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09714D221B7A56E0052C8BA /* Category.swift */; };
 		D0A7380D21B7CE80001864AA /* APIService+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7380C21B7CE80001864AA /* APIService+Category.swift */; };
+		D0A7380F21B8F76D001864AA /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7380E21B8F76D001864AA /* Image.swift */; };
+		D0A7381121B90561001864AA /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7381021B90561001864AA /* Realm+Extensions.swift */; };
 		D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */; };
 		D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */; };
 		D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DF7D0421AD48520090DD2B /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		D09714D021B6858E0052C8BA /* ResponseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseListItem.swift; sourceTree = "<group>"; };
 		D09714D221B7A56E0052C8BA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D0A7380C21B7CE80001864AA /* APIService+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIService+Category.swift"; sourceTree = "<group>"; };
+		D0A7380E21B8F76D001864AA /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D0A7381021B90561001864AA /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		D0DF7CFA21AD48510090DD2B /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				D0A7380C21B7CE80001864AA /* APIService+Category.swift */,
 				D09714D021B6858E0052C8BA /* ResponseListItem.swift */,
 				D09714D221B7A56E0052C8BA /* Category.swift */,
+				D0A7380E21B8F76D001864AA /* Image.swift */,
+				D0A7381021B90561001864AA /* Realm+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */,
+				D0A7381121B90561001864AA /* Realm+Extensions.swift in Sources */,
 				D035184621B7BA4E000CB779 /* CategoryDetailViewController.swift in Sources */,
 				D09714D121B6858E0052C8BA /* ResponseListItem.swift in Sources */,
 				D0DF7D2021B66C260090DD2B /* BaseViewController.swift in Sources */,
@@ -328,6 +335,7 @@
 				D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */,
 				D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */,
 				D09714D321B7A56E0052C8BA /* Category.swift in Sources */,
+				D0A7380F21B8F76D001864AA /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
