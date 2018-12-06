@@ -3,11 +3,11 @@
 
 target 'iTunesDemo' do
   use_frameworks!
-  pod 'PureLayout'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
   pod 'RealmSwift'
   pod 'SDWebImage'  
+  pod 'SnapKit'
 
 end

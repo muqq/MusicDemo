@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import PureLayout
+import SnapKit
 import RxDataSources
 
 class CategoryViewController: BaseViewController {
@@ -31,7 +31,9 @@ class CategoryViewController: BaseViewController {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.cellIdentifier)
         self.view.addSubview(self.tableView)
-        self.tableView.autoPinEdgesToSuperviewEdges()
+        self.tableView.snp.makeConstraints { (maker) in
+            maker.edges.equalToSuperview()
+        }
         self.setupRX()
         self.query()
     }
