@@ -12,7 +12,7 @@ import RealmSwift
 class Category: Object, Codable {
     @objc dynamic var id: String
     @objc dynamic var title: String
-    let images = List<Image>()
+    let images: List<Image>!
 }
 
 
