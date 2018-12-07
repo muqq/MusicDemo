@@ -42,7 +42,7 @@ class CategoryViewController: BaseViewController {
         self.tableView.rx.itemSelected.map { indexPath in
             return self.dataSource[indexPath]
             }.subscribe(onNext: { (category) in
-                let categoryDetailViewController = CateogryDetailViewController(service: self.service)
+                let categoryDetailViewController = CateogryDetailViewController(service: self.service, id: category.id)
                 self.navigationController?.pushViewController(categoryDetailViewController, animated: true)
             }).disposed(by: disposeBag)
     }

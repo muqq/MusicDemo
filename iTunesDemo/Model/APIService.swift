@@ -12,6 +12,7 @@ protocol APIService {
     func getToken() -> Single<String>
     
     func getCateogries() -> Observable<[Category]>
+    func getCateogry(id: String) -> Observable<CategoryDetail>
 }
 
 
@@ -24,13 +25,13 @@ class API: APIService {
     private let tail = "?territory=TW&offset=0&limit=500"
     private var token: String?
     
-    internal func sendRequest<T: Codable>(path: Path, method: HTTPMethod) -> Single<ResponseListItem<T>> {
-        return Single<ResponseListItem<T>>.create(subscribe: { single -> Disposable in
+    internal func sendRequest<T: Codable>(path: String, method: HTTPMethod) -> Single<T> {
+        return Single<T>.create(subscribe: { single -> Disposable in
             guard let token = self.token else {
                 single(.error(KKDEMOError.noToken))
                 return Disposables.create()
             }
-            let url = URL(string: self.path + path.rawValue + self.tail)!
+            let url = URL(string: self.path + path + self.tail)!
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
             request.allHTTPHeaderFields = [
@@ -44,8 +45,12 @@ class API: APIService {
                         return
                     }
                     
+                    
+                    
                     do {
-                        let responseItem = try JSONDecoder().decode(ResponseListItem<T>.self, from: data)
+                        let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                        print("回傳json = \(json)")
+                        let responseItem = try JSONDecoder().decode(T.self, from: data)
                         single(.success(responseItem))
                     } catch {
                         single(.error(KKDEMOError.decodeError))
