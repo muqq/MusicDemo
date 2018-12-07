@@ -39,9 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let _ = self.service.APIService.getToken().subscribe({ [weak self] (event) in
             let categoryViewController = CategoryViewController(service: self!.service)
+            let playlistViewController = PlaylistViewController(service: self!.service, nibName: "PlaylistViewController")
             let tabbarController = UITabBarController()
             tabbarController.view.backgroundColor = .white
-            tabbarController.viewControllers = [categoryViewController]
+            tabbarController.viewControllers = [categoryViewController, playlistViewController]
             self?.window?.rootViewController = UINavigationController(rootViewController: tabbarController)
             self?.window?.makeKeyAndVisible()
         })

@@ -13,6 +13,7 @@ protocol APIService {
     
     func getCateogries() -> Observable<[Category]>
     func getCateogry(id: String) -> Observable<CategoryDetail>
+    func getPlaylists() -> Observable<PlayList>
 }
 
 

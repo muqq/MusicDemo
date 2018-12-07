@@ -23,6 +23,12 @@ class BaseViewController: UIViewController {
     }
     
     
+    init(service: Service, nibName: String) {
+        self.service = service
+        super.init(nibName: nibName, bundle: nil)
+    }
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
