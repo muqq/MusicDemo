@@ -20,6 +20,8 @@
 		D0A7381121B90561001864AA /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7381021B90561001864AA /* Realm+Extensions.swift */; };
 		D0A7381321BA1D49001864AA /* CategoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7381221BA1D49001864AA /* CategoryDetail.swift */; };
 		D0A7381521BA1FFE001864AA /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7381421BA1FFE001864AA /* PlayList.swift */; };
+		D0A7381A21BA6559001864AA /* CategoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7381821BA6559001864AA /* CategoryDetailTableViewCell.swift */; };
+		D0A7381B21BA6559001864AA /* CategoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A7381921BA6559001864AA /* CategoryDetailTableViewCell.xib */; };
 		D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */; };
 		D0DF7D0021AD48510090DD2B /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */; };
 		D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DF7D0421AD48520090DD2B /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		D0A7381021B90561001864AA /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		D0A7381221BA1D49001864AA /* CategoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetail.swift; sourceTree = "<group>"; };
 		D0A7381421BA1FFE001864AA /* PlayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayList.swift; sourceTree = "<group>"; };
+		D0A7381821BA6559001864AA /* CategoryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailTableViewCell.swift; sourceTree = "<group>"; };
+		D0A7381921BA6559001864AA /* CategoryDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDetailTableViewCell.xib; sourceTree = "<group>"; };
 		D0DF7CFA21AD48510090DD2B /* iTunesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DF7CFD21AD48510090DD2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				A4D0161E21B9215A0032C0D3 /* Playlist */,
 				D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */,
 				D035184521B7BA4E000CB779 /* CategoryDetailViewController.swift */,
+				D0A7381821BA6559001864AA /* CategoryDetailTableViewCell.swift */,
+				D0A7381921BA6559001864AA /* CategoryDetailTableViewCell.xib */,
 				D0DF7D1F21B66C260090DD2B /* BaseViewController.swift */,
 			);
 			path = ViewController;
@@ -273,6 +279,7 @@
 			files = (
 				A4D0161D21B916700032C0D3 /* PlaylistViewController.xib in Resources */,
 				D0DF7D0821AD48520090DD2B /* LaunchScreen.storyboard in Resources */,
+				D0A7381B21BA6559001864AA /* CategoryDetailTableViewCell.xib in Resources */,
 				D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */,
 				A4D0162221B922220032C0D3 /* PlaylistTableViewCell.xib in Resources */,
 			);
@@ -355,6 +362,7 @@
 			files = (
 				D0A7381321BA1D49001864AA /* CategoryDetail.swift in Sources */,
 				D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */,
+				D0A7381A21BA6559001864AA /* CategoryDetailTableViewCell.swift in Sources */,
 				D0A7381121B90561001864AA /* Realm+Extensions.swift in Sources */,
 				A4D0162121B922220032C0D3 /* PlaylistTableViewCell.swift in Sources */,
 				D035184621B7BA4E000CB779 /* CategoryDetailViewController.swift in Sources */,

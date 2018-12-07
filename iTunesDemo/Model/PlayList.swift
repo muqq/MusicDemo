@@ -15,7 +15,7 @@ class PlayList: Object, Codable {
     @objc dynamic var title: String = ""
     @objc dynamic var desc: String = ""
     @objc dynamic var url: String = ""
-    var images: List<Image>!
+    var images: List<Image>?
     
     var paging: Paging!
     var summary: Summary!
@@ -23,6 +23,8 @@ class PlayList: Object, Codable {
         case id
         case title
         case desc = "description"
+        case url = "url"
+        case images = "images"
     }
     
     required init(from decoder: Decoder) throws {
@@ -30,6 +32,8 @@ class PlayList: Object, Codable {
         id = try container.decode(String.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
         desc = try container.decode(String.self, forKey: .desc)
+        url = try container.decode(String.self, forKey: .url)
+        images = try container.decode(List<Image>.self, forKey: .images)
         super.init()
     }
     
