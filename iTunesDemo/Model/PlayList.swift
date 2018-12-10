@@ -12,7 +12,7 @@ import Realm
 
 class PlayList: Object, Codable, ListItemProtocol {
     @objc dynamic var id: String = ""
-    @objc dynamic var title: String = ""
+    @objc dynamic var name: String = ""
     @objc dynamic var desc: String = ""
     @objc dynamic var url: String = ""
     var images: List<Image>?
@@ -21,7 +21,7 @@ class PlayList: Object, Codable, ListItemProtocol {
     var summary: Summary!
     enum CodingKeys: String, CodingKey {
         case id
-        case title
+        case name = "title"
         case desc = "description"
         case url = "url"
         case images = "images"
@@ -30,7 +30,7 @@ class PlayList: Object, Codable, ListItemProtocol {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        title = try container.decode(String.self, forKey: .title)
+        name = try container.decode(String.self, forKey: .name)
         desc = try container.decode(String.self, forKey: .desc)
         url = try container.decode(String.self, forKey: .url)
         images = try container.decode(List<Image>.self, forKey: .images)

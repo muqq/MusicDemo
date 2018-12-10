@@ -9,13 +9,13 @@
 import Foundation
 import RealmSwift
 
-class Track: Object, Codable {
+class Track: Object, Codable, ListItemProtocol {
+    var images: List<Image>?
     @objc dynamic var id: String
     @objc dynamic var name: String
     @objc dynamic var url: String
     @objc dynamic var duration: Int
     @objc dynamic var album: Album?
-    let images: List<Image>?
 }
 
 class Tracks: Object, Codable {

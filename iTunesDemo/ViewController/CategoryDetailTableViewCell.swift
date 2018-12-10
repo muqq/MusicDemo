@@ -16,7 +16,7 @@ class CategoryDetailTableViewCell: UITableViewCell {
     var playList: PlayList? {
         didSet {
             if let playList = self.playList {
-                self.titleLabel.text = playList.title
+                self.titleLabel.text = playList.name
                 if let url = playList.images?.first?.url {
                     self.backgroundImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
                 }
