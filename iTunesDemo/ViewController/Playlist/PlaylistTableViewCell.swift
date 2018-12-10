@@ -7,9 +7,22 @@
 //
 
 import UIKit
-
+import RxCocoa
+import RxSwift
 class PlaylistTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    var playList: PlayList? {
+        didSet {
+            if let playList = self.playList {
+                if let url = playList.images?.first?.url {
+                    self.iconImageView.sd_setImage(with: URL.init(string: url), completed: nil)
+                }
+                self.titleLabel.text = playList.title
+            }
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

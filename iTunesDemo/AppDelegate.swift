@@ -24,22 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = .white
         self.service = KKDemoService()
-
-//        Realm.Configuration.defaultConfiguration = Realm.Configuration(
-//            schemaVersion: 1,
-//            migrationBlock: { migration, oldSchemaVersion in
-//                if (oldSchemaVersion < 1) {
-//                    migration.enumerateObjects(ofType: Category.className()) { oldObject, newObject in
-//                        newObject!["images"] = []
-//                    }
-//                }
-//        })
         
         self.realm = try! Realm()
         
         let _ = self.service.APIService.getToken().subscribe({ [weak self] (event) in
             let categoryViewController = CategoryViewController(service: self!.service)
             let playlistViewController = PlaylistViewController(service: self!.service, nibName: "PlaylistViewController")
+            playlistViewController.tabBarItem.title = "PlayList"
+            categoryViewController.tabBarItem.title = "Category"
             let tabbarController = UITabBarController()
             tabbarController.view.backgroundColor = .white
             tabbarController.viewControllers = [categoryViewController, playlistViewController]
