@@ -9,13 +9,21 @@
 import UIKit
 import RxCocoa
 import RxSwift
-class PlaylistTableViewCell: UITableViewCell {
+import RealmSwift
+
+protocol ListItemProtocol: AnyObject {
+    var id: String { get set }
+    var title: String { get set }
+    var images: List<Image>? { get set }
+}
+
+class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    var playList: PlayList? {
+    var item: ListItemProtocol? {
         didSet {
-            if let playList = self.playList {
+            if let playList = self.item {
                 if let url = playList.images?.first?.url {
                     self.iconImageView.sd_setImage(with: URL.init(string: url), completed: nil)
                 }

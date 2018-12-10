@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 import RealmSwift
+import RxCocoa
 
 class PlaylistViewController: BaseViewController, UITableViewDelegate {
     
@@ -18,8 +19,8 @@ class PlaylistViewController: BaseViewController, UITableViewDelegate {
     
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, PlayList>>(
         configureCell: { (_, tv, indexPath, element) in
-            let cell = tv.dequeueReusableCell(withIdentifier: "PlaylistTableViewCell") as! PlaylistTableViewCell
-            cell.playList = element
+            let cell = tv.dequeueReusableCell(withIdentifier: "PlaylistTableViewCell") as! ListTableViewCell
+            cell.list = element
             return cell
     }, titleForHeaderInSection: { dataSource, sectionIndex in
         return dataSource[sectionIndex].model
@@ -50,7 +51,13 @@ class PlaylistViewController: BaseViewController, UITableViewDelegate {
     
     private func initView() {
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
-        self.tableView.register(UINib.init(nibName: "PlaylistTableViewCell", bundle: nil), forCellReuseIdentifier: "PlaylistTableViewCell")
+        self.tableView.register(UINib.init(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "PlaylistTableViewCell")
+        self.tableView.rx.itemSelected.map { indexPath in
+            return self.dataSource[indexPath]
+            }.subscribe(onNext: { (playlist) in
+                let playlistDetailViewController = PlayListDetailViewController(service: self.service, id: playlist.id)
+                self.navigationController?.pushViewController(playlistDetailViewController, animated: true)
+            }).disposed(by: disposeBag)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

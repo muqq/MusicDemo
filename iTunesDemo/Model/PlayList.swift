@@ -10,7 +10,7 @@ import RealmSwift
 import Realm
 
 
-class PlayList: Object, Codable {
+class PlayList: Object, Codable, ListItemProtocol {
     @objc dynamic var id: String = ""
     @objc dynamic var title: String = ""
     @objc dynamic var desc: String = ""

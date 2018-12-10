@@ -36,17 +36,4 @@ extension API {
             return Disposables.create()
         })
     }
-    
-    func getPlaylists() -> Observable<[PlayList]> {
-        return Observable<[PlayList]>.create({ observer -> Disposable in
-            let _ = self.sendRequest(path: Path.featuredPlaylists.rawValue, method: HTTPMethod.get).subscribe(onSuccess: { (item: ResponseListItem<[PlayList]>) in
-                observer.onNext(item.data!)
-                observer.onCompleted()
-            }, onError: { (error) in
-                observer.onError(error)
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
-    }
 }
