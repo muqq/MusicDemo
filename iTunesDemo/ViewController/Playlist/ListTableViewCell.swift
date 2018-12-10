@@ -13,7 +13,7 @@ import RealmSwift
 
 protocol ListItemProtocol: AnyObject {
     var id: String { get set }
-    var title: String { get set }
+    var name: String { get set }
     var images: List<Image>? { get set }
 }
 
@@ -23,11 +23,11 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     var item: ListItemProtocol? {
         didSet {
-            if let playList = self.item {
-                if let url = playList.images?.first?.url {
+            if let item = self.item {
+                if let url = item.images?.first?.url {
                     self.iconImageView.sd_setImage(with: URL.init(string: url), completed: nil)
                 }
-                self.titleLabel.text = playList.title
+                self.titleLabel.text = item.name
             }
         }
     }

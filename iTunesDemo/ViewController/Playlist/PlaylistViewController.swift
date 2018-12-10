@@ -20,7 +20,7 @@ class PlaylistViewController: BaseViewController, UITableViewDelegate {
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, PlayList>>(
         configureCell: { (_, tv, indexPath, element) in
             let cell = tv.dequeueReusableCell(withIdentifier: "PlaylistTableViewCell") as! ListTableViewCell
-            cell.list = element
+            cell.item = element
             return cell
     }, titleForHeaderInSection: { dataSource, sectionIndex in
         return dataSource[sectionIndex].model
