@@ -45,7 +45,7 @@ class CategoryDetailViewController: BaseViewController, UITableViewDelegate {
         
         self.tableView.rx.setDelegate(self).disposed(by: disposeBag)
         self.tableView.register(UINib(nibName: "CategoryDetailTableViewCell", bundle: nil), forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
-        self.APIService.getCateogry(id: self.id).map { (detail) -> [SectionModel<String, PlayList>] in
+        self.APIService.getCateogry(id: self.id) .map { (detail) -> [SectionModel<String, PlayList>] in
             return [SectionModel(model: "PlayList", items: Array(detail.playlists.data))]
         }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
 
