@@ -49,6 +49,12 @@ class CategoryDetailViewController: BaseViewController, UITableViewDelegate {
             return [SectionModel(model: "PlayList", items: Array(detail.playlists.data))]
         }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
 
+        self.tableView.rx.itemSelected.map { indexPath in
+            return self.dataSource[indexPath]
+            }.subscribe(onNext: { (playlist) in
+                let playListDetailVC = PlayListDetailViewController.init(service: self.service, id: playlist.id)
+                self.navigationController?.pushViewController(playListDetailVC, animated: true)
+            }).disposed(by: disposeBag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -14,13 +14,11 @@ protocol APIService {
     func getCateogries() -> Observable<[Category]>
     func getCateogry(id: String) -> Observable<CategoryDetail>
     func getPlaylists() -> Observable<[PlayList]>
+    func getPlaylist(id: String) -> Observable<Tracks>
 }
 
 
 class API: APIService {
-
-    
-    
 
     private let APIID = "aaa496e0ea4f2bfb2beb899384f048f6"
     private let secret = "6a383b62e769cce6fdca9f736fde87cd"

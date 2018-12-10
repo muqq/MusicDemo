@@ -19,5 +19,11 @@ class Track: Object, Codable, ListItemProtocol {
 }
 
 class Tracks: Object, Codable {
+    @objc dynamic var tracks: TrackData!
+    
+}
+
+class TrackData: Object, Codable {
     let data: List<Track>!
+    
 }
