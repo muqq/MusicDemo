@@ -1,0 +1,52 @@
+//
+//  TrackViewController.swift
+//  iTunesDemo
+//
+//  Created by Henry.Shih on 2018/12/11.
+//  Copyright © 2018 n1. All rights reserved.
+//
+
+import UIKit
+import SDWebImage
+import RxSwift
+
+class TrackViewController: BaseViewController {
+
+    @IBOutlet weak var favoriteButton: FavoriteButton!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var albumLabel: UILabel!
+    @IBOutlet weak var trackImageView: UIImageView!
+    @IBOutlet weak var trackLabel: UILabel!
+    private var track: Track!
+    private var viewModel: TrackViewModel!
+    private var disposeBag = DisposeBag()
+    
+    convenience init(service: Service, track: Track) {
+        self.init(service: service, nibName: "TrackViewController")
+        self.track = track
+        self.viewModel = TrackViewModel.init(track: track)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.trackLabel.text = self.track.name
+        self.artistLabel.text = self.track.album?.artist?.name
+        self.albumLabel.text = self.track.album?.name
+        if let url = self.track.album?.images.first?.url {
+            self.trackImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
+        }
+
+        self.viewModel.isFavortied.asObserver().bind(to: self.favoriteButton.rx.isSelected).disposed(by: self.disposeBag)
+        
+        self.favoriteButton.rx.controlEvent(UIControlEvents.touchUpInside).subscribe(onNext: {
+            self.favoriteButton.isSelected = !self.favoriteButton.isSelected
+            if self.favoriteButton.isSelected {
+                self.viewModel.saveTrack()
+            } else {
+                self.viewModel.removeTrack()
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel.checkTrackIsFavorited()
+    }
+}

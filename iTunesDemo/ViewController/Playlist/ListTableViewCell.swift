@@ -14,7 +14,6 @@ import RealmSwift
 protocol ListItemProtocol: AnyObject {
     var id: String { get set }
     var name: String { get set }
-    var images: List<Image>? { get set }
 }
 
 class ListTableViewCell: UITableViewCell {
@@ -24,9 +23,6 @@ class ListTableViewCell: UITableViewCell {
     var item: ListItemProtocol? {
         didSet {
             if let item = self.item {
-                if let url = item.images?.first?.url {
-                    self.iconImageView.sd_setImage(with: URL.init(string: url), completed: nil)
-                }
                 self.titleLabel.text = item.name
             }
         }

@@ -14,5 +14,5 @@ class Album: Object, Codable {
     @objc dynamic var name: String
     @objc dynamic var url: String
     @objc dynamic var artist: Artist?
-    let images: List<Image>?
+    let images = List<Image>()
 }

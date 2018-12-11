@@ -15,7 +15,7 @@ class PlayList: Object, Codable, ListItemProtocol {
     @objc dynamic var name: String = ""
     @objc dynamic var desc: String = ""
     @objc dynamic var url: String = ""
-    var images: List<Image>?
+    var images = List<Image>()
     
     var paging: Paging!
     var summary: Summary!

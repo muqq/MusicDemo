@@ -13,5 +13,5 @@ class Artist: Object, Codable {
     @objc dynamic var id: String
     @objc dynamic var name: String
     @objc dynamic var url: String
-    let images: List<Image>?
+    let images = List<Image>()
 }

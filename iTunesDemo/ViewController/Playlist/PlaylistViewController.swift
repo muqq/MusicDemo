@@ -11,6 +11,7 @@ import RxSwift
 import RxDataSources
 import RealmSwift
 import RxCocoa
+import SDWebImage
 
 class PlaylistViewController: BaseViewController, UITableViewDelegate {
     
@@ -21,6 +22,7 @@ class PlaylistViewController: BaseViewController, UITableViewDelegate {
         configureCell: { (_, tv, indexPath, element) in
             let cell = tv.dequeueReusableCell(withIdentifier: "PlaylistTableViewCell") as! ListTableViewCell
             cell.item = element
+            cell.iconImageView.sd_setImage(with: URL(string: element.images.first!.url)!, completed: nil)
             return cell
     }, titleForHeaderInSection: { dataSource, sectionIndex in
         return dataSource[sectionIndex].model

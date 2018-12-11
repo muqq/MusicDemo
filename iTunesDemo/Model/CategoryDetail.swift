@@ -13,6 +13,6 @@ class CategoryDetail: Object, Codable {
     @objc dynamic var id: String
     @objc dynamic var title: String
     @objc dynamic var playlists: PlayLists!
-    let images: List<Image>!
+    let images = List<Image>()
 
 }

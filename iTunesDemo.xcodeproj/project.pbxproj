@@ -12,6 +12,10 @@
 		A4D0161D21B916700032C0D3 /* PlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0161C21B916700032C0D3 /* PlaylistViewController.xib */; };
 		A4D0162121B922220032C0D3 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0161F21B922220032C0D3 /* ListTableViewCell.swift */; };
 		A4D0162221B922220032C0D3 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0162021B922220032C0D3 /* ListTableViewCell.xib */; };
+		D022C92E21BF68760052B84D /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C92D21BF68760052B84D /* FavoriteButton.swift */; };
+		D022C93021BF8EDC0052B84D /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */; };
+		D027A2A121BF5EA2002EE8DF /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027A29F21BF5EA2002EE8DF /* TrackViewController.swift */; };
+		D027A2A221BF5EA2002EE8DF /* TrackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D027A2A021BF5EA2002EE8DF /* TrackViewController.xib */; };
 		D035184621B7BA4E000CB779 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035184521B7BA4E000CB779 /* CategoryDetailViewController.swift */; };
 		D09714D121B6858E0052C8BA /* ResponseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09714D021B6858E0052C8BA /* ResponseListItem.swift */; };
 		D09714D321B7A56E0052C8BA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09714D221B7A56E0052C8BA /* Category.swift */; };
@@ -55,6 +59,10 @@
 		A4D0161C21B916700032C0D3 /* PlaylistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistViewController.xib; sourceTree = "<group>"; };
 		A4D0161F21B922220032C0D3 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		A4D0162021B922220032C0D3 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		D022C92D21BF68760052B84D /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		D027A29F21BF5EA2002EE8DF /* TrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
+		D027A2A021BF5EA2002EE8DF /* TrackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackViewController.xib; sourceTree = "<group>"; };
 		D035184521B7BA4E000CB779 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		D09714D021B6858E0052C8BA /* ResponseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseListItem.swift; sourceTree = "<group>"; };
 		D09714D221B7A56E0052C8BA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 		D0DF7D2521B674280090DD2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D0A7380E21B8F76D001864AA /* Image.swift */,
 				D0DF7D2121B66CCB0090DD2B /* Service.swift */,
 				D0DF7D1D21B661F10090DD2B /* APIService.swift */,
 				D0A7380C21B7CE80001864AA /* APIService+Category.swift */,
@@ -178,7 +187,6 @@
 				D09714D221B7A56E0052C8BA /* Category.swift */,
 				D0A7381221BA1D49001864AA /* CategoryDetail.swift */,
 				D0A7381421BA1FFE001864AA /* PlayList.swift */,
-				D0A7380E21B8F76D001864AA /* Image.swift */,
 				D0C21A9021BE59DD0077A8B5 /* Album.swift */,
 				D0C21A8F21BE59DD0077A8B5 /* Artist.swift */,
 				D0A7381C21BE5967001864AA /* Track.swift */,
@@ -196,6 +204,10 @@
 				D0A7381821BA6559001864AA /* CategoryDetailTableViewCell.swift */,
 				D0A7381921BA6559001864AA /* CategoryDetailTableViewCell.xib */,
 				D0DF7D1F21B66C260090DD2B /* BaseViewController.swift */,
+				D027A29F21BF5EA2002EE8DF /* TrackViewController.swift */,
+				D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */,
+				D027A2A021BF5EA2002EE8DF /* TrackViewController.xib */,
+				D022C92D21BF68760052B84D /* FavoriteButton.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -296,6 +308,7 @@
 				D0DF7D0821AD48520090DD2B /* LaunchScreen.storyboard in Resources */,
 				D0A7381B21BA6559001864AA /* CategoryDetailTableViewCell.xib in Resources */,
 				D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */,
+				D027A2A221BF5EA2002EE8DF /* TrackViewController.xib in Resources */,
 				A4D0162221B922220032C0D3 /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D022C93021BF8EDC0052B84D /* TrackViewModel.swift in Sources */,
 				D0A7381321BA1D49001864AA /* CategoryDetail.swift in Sources */,
 				D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */,
 				D0C21A9221BE59DD0077A8B5 /* Album.swift in Sources */,
@@ -393,9 +407,11 @@
 				D0A7381D21BE5967001864AA /* Track.swift in Sources */,
 				A4D0161B21B913470032C0D3 /* PlaylistViewController.swift in Sources */,
 				D0DF7CFE21AD48510090DD2B /* AppDelegate.swift in Sources */,
+				D027A2A121BF5EA2002EE8DF /* TrackViewController.swift in Sources */,
 				D0C21A9421BE60B70077A8B5 /* PlayListDetailViewController.swift in Sources */,
 				D09714D321B7A56E0052C8BA /* Category.swift in Sources */,
 				D0A7380F21B8F76D001864AA /* Image.swift in Sources */,
+				D022C92E21BF68760052B84D /* FavoriteButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

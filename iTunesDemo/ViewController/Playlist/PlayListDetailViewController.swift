@@ -23,7 +23,7 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
         configureCell: { (_, tv, indexPath, element) in
             let cell = tv.dequeueReusableCell(withIdentifier: "ListTableViewCell")! as! ListTableViewCell
             cell.item = element
-            if let url = element.album?.images?.first?.url {
+            if let url = element.album?.images.first?.url {
                 cell.iconImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
             }
             return cell
@@ -49,6 +49,14 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
         self.tableView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
+        
+        self.tableView.rx.itemSelected.map { indexPath in
+            return self.dataSource[indexPath]
+            }.subscribe(onNext: { (track) in
+                let trackViewController = TrackViewController(service: self.service, track: track)
+                self.navigationController?.pushViewController(trackViewController, animated: true)
+            }).disposed(by: disposeBag)
+        
         self.query()
     }
     

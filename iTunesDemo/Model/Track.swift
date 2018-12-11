@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class Track: Object, Codable, ListItemProtocol {
-    var images: List<Image>?
     @objc dynamic var id: String
     @objc dynamic var name: String
     @objc dynamic var url: String
@@ -24,6 +23,6 @@ class Tracks: Object, Codable {
 }
 
 class TrackData: Object, Codable {
-    let data: List<Track>!
+    let data = List<Track>()
     
 }
