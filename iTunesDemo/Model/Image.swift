@@ -10,7 +10,11 @@ import Foundation
 import RealmSwift
 
 class Image: Object, Codable {
-    @objc dynamic var height: Int
-    @objc dynamic var width: Int
-    @objc dynamic var url: String
+    @objc dynamic var height: Int = 0
+    @objc dynamic var width: Int = 0
+    @objc dynamic var url: String = ""
+    
+    override static func primaryKey() -> String? {
+        return "url"
+    }
 }

@@ -53,9 +53,7 @@ class CategoryViewController: BaseViewController {
             let result = realm.objects(Category.self)
             return Observable<[Category]>.just(Array(result))
             }.map { (categories) -> [SectionModel<String, Category>] in
-                try! realm.write {
-                    realm.add(categories)
-                }
+                let _ = self.realmManager.add(categories)
                 return [SectionModel.init(model: "Categories", items: categories)]
             }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
     }

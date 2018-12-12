@@ -17,6 +17,10 @@ class PlayList: Object, Codable, ListItemProtocol {
     @objc dynamic var url: String = ""
     var images = List<Image>()
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     var paging: Paging!
     var summary: Summary!
     enum CodingKeys: String, CodingKey {
@@ -53,5 +57,27 @@ class PlayList: Object, Codable, ListItemProtocol {
 }
 
 class PlayLists: Object, Codable {
-    let data: List<PlayList>!
+    var data = List<PlayList>()
+    enum CodingKeys: String, CodingKey {
+        case data
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.data = try container.decode(List<PlayList>.self, forKey: .data)
+        super.init()
+    }
+    
+    
+    required init() {
+        super.init()
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
 }

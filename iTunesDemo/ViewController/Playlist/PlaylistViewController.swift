@@ -40,9 +40,7 @@ class PlaylistViewController: BaseViewController, UITableViewDelegate {
             let result = realm.objects(PlayList.self)
             return Observable<[PlayList]>.just(Array(result))
             }.map { (playLists) -> [SectionModel<String, PlayList>] in
-                try! realm.write {
-                    realm.add(playLists)
-                }
+                let _ = self.realmManager.add(playLists)
                 return [SectionModel.init(model: "PlayLists", items: playLists)]
             }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
     }

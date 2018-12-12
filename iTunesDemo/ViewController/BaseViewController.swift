@@ -17,6 +17,10 @@ class BaseViewController: UIViewController {
         return self.service.APIService
     }
     
+    var realmManager: RealmManagerProtocol {
+        return self.service.realmManager
+    }
+    
     init(service: Service) {
         self.service = service
         super.init(nibName: nil, bundle: nil)

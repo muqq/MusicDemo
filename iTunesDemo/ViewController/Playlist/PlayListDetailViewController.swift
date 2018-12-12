@@ -23,7 +23,7 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
         configureCell: { (_, tv, indexPath, element) in
             let cell = tv.dequeueReusableCell(withIdentifier: "ListTableViewCell")! as! ListTableViewCell
             cell.item = element
-            if let url = element.album?.images.first?.url {
+            if let url = element.album.images.first?.url {
                 cell.iconImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
             }
             return cell
@@ -61,8 +61,12 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
     }
     
     private func query() {
-        self.APIService.getPlaylist(id: self.id).map { (tracks) -> [SectionModel<String, Track>] in
-                return [SectionModel.init(model: "Tracks", items: Array(tracks.tracks.data))]
+        self.APIService.getPlaylist(id: self.id).catchError({ (error) -> Observable<[Track]> in
+            let result: Results<Track> = self.realmManager.query()
+            return Observable<[Track]>.just(Array(result.elements))
+        }).map { [weak self] (tracks) -> [SectionModel<String, Track>] in
+            let _ = self?.realmManager.add(tracks)
+            return [SectionModel.init(model: "Tracks", items: tracks)]
         }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
     }
     

@@ -23,10 +23,10 @@ extension API {
         })
     }
     
-    func getPlaylist(id: String) -> Observable<Tracks> {
-        return Observable<Tracks>.create({ observer -> Disposable in
+    func getPlaylist(id: String) -> Observable<[Track]> {
+        return Observable<[Track]>.create({ observer -> Disposable in
             let _ = self.sendRequest(path: Path.featuredPlaylists.rawValue + "/\(id)", method: HTTPMethod.get).subscribe(onSuccess: { (item: Tracks) in
-                observer.onNext(item)
+                observer.onNext(item.tracks.data)
                 observer.onCompleted()
             }, onError: { (error) in
                 observer.onError(error)

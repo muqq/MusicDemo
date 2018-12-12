@@ -10,32 +10,50 @@ import Foundation
 import RxSwift
 import RealmSwift
 
-class TrackViewModel {
+class TrackViewModel: NSObject {
     
-    let track: Track
-    let realm: Realm
+    private var track: Track
+    private var isDirty = false
     var isFavortied = BehaviorSubject(value: false)
+    var disposeBag = DisposeBag()
+    let realmManager: RealmManagerProtocol
     
-    
-    init(track: Track) {
+    init(track: Track, realmManager: RealmManagerProtocol) {
         self.track = track
-        self.realm = AppDelegate.appDelegate().realm
+        self.realmManager = realmManager
+        super.init()
+    }
+    
+    private func isTrackExistInRealm() -> Bool {
+        let favoritedTrack: Results<Favorited> = self.realmManager.query().filter("id = %@", self.track.id)
+        return favoritedTrack.elements.count != 0
     }
     
     func checkTrackIsFavorited() {
-        let favortiedTrack = self.realm.objects(Track.self).filter("id != '%@'", self.track.id)
-        self.isFavortied.onNext(favortiedTrack.count != 0)
-    }
-    
-    func saveTrack() {
-        try! realm.write {
-            realm.add(self.track)
+        if self.isTrackExistInRealm() {
+            self.isFavortied.onNext(true)
+        } else {
+            self.isFavortied.onNext(false)
         }
     }
     
-    func removeTrack() {
-        try! realm.write {
-            realm.delete(self.track)
+    func updateFavorite(isFavorite: Bool) {
+        self.isFavortied.onNext(!isFavorite)
+        self.isDirty = true
+    }
+    
+    func saveStatus() {
+        if self.isDirty == true {
+            if try! self.isFavortied.value() == true {
+                let favorited = Favorited()
+                favorited.id = self.track.id
+                let _ = self.realmManager.add(object: favorited)
+            } else {
+                let favoritedTrack: Results<Favorited> = self.realmManager.query().filter("id = %@", self.track.id)
+                if favoritedTrack.count > 0 {
+                    let _ = self.realmManager.delete(object: favoritedTrack.elements.first!)
+                }
+            }
         }
     }
 }

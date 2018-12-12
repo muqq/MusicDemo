@@ -24,27 +24,27 @@ class TrackViewController: BaseViewController {
     convenience init(service: Service, track: Track) {
         self.init(service: service, nibName: "TrackViewController")
         self.track = track
-        self.viewModel = TrackViewModel.init(track: track)
+        self.viewModel = TrackViewModel.init(track: track, realmManager: self.service.realmManager)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.viewModel.saveStatus()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.trackLabel.text = self.track.name
-        self.artistLabel.text = self.track.album?.artist?.name
-        self.albumLabel.text = self.track.album?.name
-        if let url = self.track.album?.images.first?.url {
+        self.artistLabel.text = self.track.album.artist.name
+        self.albumLabel.text = self.track.album.name
+        if let url = self.track.album.images.first?.url {
             self.trackImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
         }
 
         self.viewModel.isFavortied.asObserver().bind(to: self.favoriteButton.rx.isSelected).disposed(by: self.disposeBag)
         
-        self.favoriteButton.rx.controlEvent(UIControlEvents.touchUpInside).subscribe(onNext: {
-            self.favoriteButton.isSelected = !self.favoriteButton.isSelected
-            if self.favoriteButton.isSelected {
-                self.viewModel.saveTrack()
-            } else {
-                self.viewModel.removeTrack()
-            }
+        self.favoriteButton.rx.controlEvent(UIControlEvents.touchUpInside).subscribe(onNext: { [weak self] in
+            self?.viewModel.updateFavorite(isFavorite: self!.favoriteButton.isSelected)
         }).disposed(by: self.disposeBag)
         
         self.viewModel.checkTrackIsFavorited()

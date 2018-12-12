@@ -1,22 +1,18 @@
 //
-//  Category.swift
+//  File.swift
 //  iTunesDemo
 //
-//  Created by Henry.Shih on 2018/12/5.
+//  Created by Henry.Shih on 2018/12/12.
 //  Copyright © 2018 n1. All rights reserved.
 //
 
 import Foundation
+
 import RealmSwift
 
-class Category: Object, Codable {
+class Favorited: Object {
     @objc dynamic var id: String = ""
-    @objc dynamic var title: String = ""
-    let images = List<Image>()
-    
     override static func primaryKey() -> String? {
         return "id"
     }
 }
-
-

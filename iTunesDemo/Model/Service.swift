@@ -10,13 +10,16 @@ import Foundation
 
 protocol Service {
     var APIService: APIService { get set }
+    var realmManager: RealmManagerProtocol { get set }
 }
 
 class KKDemoService: Service {
     
     var APIService: APIService
+    var realmManager: RealmManagerProtocol
     
     init() {
         self.APIService = API()
+        self.realmManager = RealmManager()
     }
 }
