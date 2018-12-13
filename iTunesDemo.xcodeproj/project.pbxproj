@@ -12,6 +12,11 @@
 		A4D0161D21B916700032C0D3 /* PlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0161C21B916700032C0D3 /* PlaylistViewController.xib */; };
 		A4D0162121B922220032C0D3 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0161F21B922220032C0D3 /* ListTableViewCell.swift */; };
 		A4D0162221B922220032C0D3 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0162021B922220032C0D3 /* ListTableViewCell.xib */; };
+		A4D0163021C0F4860032C0D3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0162E21C0F4860032C0D3 /* FavoriteViewController.swift */; };
+		A4D0163121C0F4860032C0D3 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0162F21C0F4860032C0D3 /* FavoriteViewController.xib */; };
+		A4D0163421C0F53D0032C0D3 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0163221C0F53D0032C0D3 /* FavoriteTableViewCell.swift */; };
+		A4D0163521C0F53D0032C0D3 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0163321C0F53D0032C0D3 /* FavoriteTableViewCell.xib */; };
+		A4D0163721C10EDA0032C0D3 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0163621C10EDA0032C0D3 /* FavoriteViewModel.swift */; };
 		D022C92E21BF68760052B84D /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C92D21BF68760052B84D /* FavoriteButton.swift */; };
 		D022C93021BF8EDC0052B84D /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */; };
 		D022C93221BFB2610052B84D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C93121BFB2610052B84D /* RealmManager.swift */; };
@@ -61,6 +66,11 @@
 		A4D0161C21B916700032C0D3 /* PlaylistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistViewController.xib; sourceTree = "<group>"; };
 		A4D0161F21B922220032C0D3 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		A4D0162021B922220032C0D3 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		A4D0162E21C0F4860032C0D3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		A4D0162F21C0F4860032C0D3 /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
+		A4D0163221C0F53D0032C0D3 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		A4D0163321C0F53D0032C0D3 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
+		A4D0163621C10EDA0032C0D3 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		D022C92D21BF68760052B84D /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		D022C93121BFB2610052B84D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -137,6 +147,18 @@
 			path = Playlist;
 			sourceTree = "<group>";
 		};
+		A4D0162D21C0F4690032C0D3 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				A4D0162E21C0F4860032C0D3 /* FavoriteViewController.swift */,
+				A4D0162F21C0F4860032C0D3 /* FavoriteViewController.xib */,
+				A4D0163221C0F53D0032C0D3 /* FavoriteTableViewCell.swift */,
+				A4D0163321C0F53D0032C0D3 /* FavoriteTableViewCell.xib */,
+				A4D0163621C10EDA0032C0D3 /* FavoriteViewModel.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		D0DF7CF121AD48510090DD2B = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +226,7 @@
 		D0DF7D2621B674320090DD2B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A4D0162D21C0F4690032C0D3 /* Favorite */,
 				A4D0161E21B9215A0032C0D3 /* Playlist */,
 				D0DF7CFF21AD48510090DD2B /* CategoryViewController.swift */,
 				D035184521B7BA4E000CB779 /* CategoryDetailViewController.swift */,
@@ -313,7 +336,9 @@
 				A4D0161D21B916700032C0D3 /* PlaylistViewController.xib in Resources */,
 				D0DF7D0821AD48520090DD2B /* LaunchScreen.storyboard in Resources */,
 				D0A7381B21BA6559001864AA /* CategoryDetailTableViewCell.xib in Resources */,
+				A4D0163121C0F4860032C0D3 /* FavoriteViewController.xib in Resources */,
 				D0DF7D0521AD48520090DD2B /* Assets.xcassets in Resources */,
+				A4D0163521C0F53D0032C0D3 /* FavoriteTableViewCell.xib in Resources */,
 				D027A2A221BF5EA2002EE8DF /* TrackViewController.xib in Resources */,
 				A4D0162221B922220032C0D3 /* ListTableViewCell.xib in Resources */,
 			);
@@ -399,6 +424,7 @@
 				D0DF7D1E21B661F10090DD2B /* APIService.swift in Sources */,
 				D0C21A9221BE59DD0077A8B5 /* Album.swift in Sources */,
 				D0A7381A21BA6559001864AA /* CategoryDetailTableViewCell.swift in Sources */,
+				A4D0163421C0F53D0032C0D3 /* FavoriteTableViewCell.swift in Sources */,
 				D0A7381121B90561001864AA /* Realm+Extensions.swift in Sources */,
 				A4D0162121B922220032C0D3 /* ListTableViewCell.swift in Sources */,
 				D035184621B7BA4E000CB779 /* CategoryDetailViewController.swift in Sources */,
@@ -416,8 +442,10 @@
 				D027A2A121BF5EA2002EE8DF /* TrackViewController.swift in Sources */,
 				D0C21A9421BE60B70077A8B5 /* PlayListDetailViewController.swift in Sources */,
 				D09714D321B7A56E0052C8BA /* Category.swift in Sources */,
+				A4D0163021C0F4860032C0D3 /* FavoriteViewController.swift in Sources */,
 				D022C93221BFB2610052B84D /* RealmManager.swift in Sources */,
 				D09FEAE221C0D91D001BD626 /* Favorited.swift in Sources */,
+				A4D0163721C10EDA0032C0D3 /* FavoriteViewModel.swift in Sources */,
 				D0A7380F21B8F76D001864AA /* Image.swift in Sources */,
 				D022C92E21BF68760052B84D /* FavoriteButton.swift in Sources */,
 			);

@@ -47,6 +47,9 @@ class TrackViewModel: NSObject {
             if try! self.isFavortied.value() == true {
                 let favorited = Favorited()
                 favorited.id = self.track.id
+                favorited.iconURL = self.track.album.images.first?.url ?? ""
+                favorited.title = self.track.name
+                favorited.subTitle = self.track.album.artist.name
                 let _ = self.realmManager.add(object: favorited)
             } else {
                 let favoritedTrack: Results<Favorited> = self.realmManager.query().filter("id = %@", self.track.id)

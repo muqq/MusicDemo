@@ -12,6 +12,10 @@ import RealmSwift
 
 class Favorited: Object {
     @objc dynamic var id: String = ""
+    @objc dynamic var iconURL: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var subTitle: String = ""
+    
     override static func primaryKey() -> String? {
         return "id"
     }
