@@ -6,6 +6,8 @@ target 'iTunesDemo' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'RxRealm'
+  pod 'RxAlamofire'
   pod 'RealmSwift'
   pod 'SDWebImage'  
   pod 'SnapKit'

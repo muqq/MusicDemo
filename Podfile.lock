@@ -1,15 +1,24 @@
 PODS:
+  - Alamofire (4.7.3)
   - Differentiator (3.0.2)
   - Realm (3.7.6):
     - Realm/Headers (= 3.7.6)
   - Realm/Headers (3.7.6)
   - RealmSwift (3.7.6):
     - Realm (= 3.7.6)
+  - RxAlamofire (4.2.0):
+    - RxAlamofire/Core (= 4.2.0)
+  - RxAlamofire/Core (4.2.0):
+    - Alamofire (~> 4.5)
+    - RxSwift (~> 4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxDataSources (3.0.2):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxRealm (0.7.5):
+    - RealmSwift (~> 3.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SDWebImage (4.4.2):
@@ -19,33 +28,41 @@ PODS:
 
 DEPENDENCIES:
   - RealmSwift
+  - RxAlamofire
   - RxCocoa
   - RxDataSources
+  - RxRealm
   - RxSwift
   - SDWebImage
   - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Differentiator
     - Realm
     - RealmSwift
+    - RxAlamofire
     - RxCocoa
     - RxDataSources
+    - RxRealm
     - RxSwift
     - SDWebImage
     - SnapKit
 
 SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
   RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
+  RxAlamofire: 87a9c588541210cc3e4a1f843ccc3ecf3eb98b31
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
+  RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: f84b546aaa098c6c871f5138e6a989a90c3cf166
+PODFILE CHECKSUM: 5457a1df89d0a72706f324758e14b1e8c79b7afd
 
 COCOAPODS: 1.5.3
