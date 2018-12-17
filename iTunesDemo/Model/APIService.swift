@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxAlamofire
 
 protocol APIService {
     func getToken() -> Single<String>
@@ -25,6 +26,30 @@ class API: APIService {
     private let path = "https://api.kkbox.com/v1.1/"
     private let tail = "?territory=TW&offset=0&limit=500"
     private var token: String?
+    private let disposeBag = DisposeBag()
+    
+    internal func rxSendRequest<T: Codable>(path: String, method: HTTPMethod = HTTPMethod.get) -> Observable<T> {
+        return Single<T>.create(subscribe: { single -> Disposable in
+            guard let token = self.token else {
+                single(.error(KKDEMOError.noToken))
+                return Disposables.create()
+            }
+            let url = URL(string: self.path + path + self.tail)!
+            var request = URLRequest(url: url)
+            request.httpMethod = method.rawValue
+            request.allHTTPHeaderFields = [
+                "accept": "application/json",
+                "authorization": "Bearer \(token)"
+            ]
+            RxAlamofire.requestData(request).mapObject(type: T.self).subscribe(onNext: { (object) in
+                single(.success(object))
+            }, onError: { (error) in
+                single(.error(KKDEMOError.APIError))
+            }).disposed(by: self.disposeBag)
+            return Disposables.create()
+        }).asObservable()
+
+    }
     
     internal func sendRequest<T: Codable>(path: String, method: HTTPMethod) -> Single<T> {
         return Single<T>.create(subscribe: { single -> Disposable in
@@ -46,8 +71,6 @@ class API: APIService {
                         return
                     }
                     
-                    
-                    
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                         print("回傳json = \(json)")
@@ -61,7 +84,6 @@ class API: APIService {
             task.resume()
             return Disposables.create { task.cancel() }
         })
-        
     }
     
     func getToken() -> Single<String> {
@@ -100,6 +122,7 @@ class API: APIService {
 
 enum KKDEMOError: Error {
     case noToken
+    case APIError
     case decodeError
     case noData
 }

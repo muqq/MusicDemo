@@ -11,28 +11,12 @@ import RxSwift
 
 extension API {
     func getPlaylists() -> Observable<[PlayList]> {
-        return Observable<[PlayList]>.create({ observer -> Disposable in
-            let _ = self.sendRequest(path: Path.featuredPlaylists.rawValue, method: HTTPMethod.get).subscribe(onSuccess: { (item: ResponseListItem<[PlayList]>) in
-                observer.onNext(item.data!)
-                observer.onCompleted()
-            }, onError: { (error) in
-                observer.onError(error)
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
+        return self.rxSendRequest(path: Path.featuredPlaylists.rawValue)
     }
     
     func getPlaylist(id: String) -> Observable<[Track]> {
-        return Observable<[Track]>.create({ observer -> Disposable in
-            let _ = self.sendRequest(path: Path.featuredPlaylists.rawValue + "/\(id)", method: HTTPMethod.get).subscribe(onSuccess: { (item: Tracks) in
-                observer.onNext(item.tracks.data)
-                observer.onCompleted()
-            }, onError: { (error) in
-                observer.onError(error)
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
+        return self.rxSendRequest(path: Path.featuredPlaylists.rawValue + "/\(id)").map { (item: Tracks) -> [Track] in
+            return item.tracks.data
+        }
     }
 }

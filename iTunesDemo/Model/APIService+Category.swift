@@ -12,28 +12,10 @@ import RxSwift
 extension API {
     
     func getCateogry(id: String) -> Observable<CategoryDetail> {
-        return Observable<CategoryDetail>.create({ observer -> Disposable in
-            let _ = self.sendRequest(path: Path.newReleaseCategories.rawValue + "/\(id)", method: HTTPMethod.get).subscribe(onSuccess: { (item: CategoryDetail) in
-                observer.onNext(item)
-                observer.onCompleted()
-            }, onError: { (error) in
-                observer.onError(error)
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
+        return self.rxSendRequest(path: Path.newReleaseCategories.rawValue + "/\(id)")
     }
     
     func getCateogries() -> Observable<[Category]> {
-        return Observable<[Category]>.create({ observer -> Disposable in
-            let _ = self.sendRequest(path: Path.newReleaseCategories.rawValue, method: HTTPMethod.get).subscribe(onSuccess: { (item: ResponseListItem<[Category]>) in
-                observer.onNext(item.data!)
-                observer.onCompleted()
-            }, onError: { (error) in
-                observer.onError(error)
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
+        return self.rxSendRequest(path: Path.newReleaseCategories.rawValue)
     }
 }
