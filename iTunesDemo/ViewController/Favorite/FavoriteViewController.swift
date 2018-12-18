@@ -34,6 +34,15 @@ class FavoriteViewController: BaseViewController {
         self.tableView.delegate = self
         self.tableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
         self.realmManager.queryChangeSet(type: Favorited.self).bind(to: tableView.rx.realmChanges(self.dataSource)).disposed(by: self.disposeBag)
+        
+        self.tableView.rx.itemSelected.asObservable().flatMap { [weak self] (indexPath) -> Observable<Track> in
+            let favorited = self?.dataSource.model(at: indexPath)
+            return self!.realmManager.queryArray(type: Track.self).map({ (tracks) -> Track in
+                return tracks.filter { return $0.id == favorited!.id }.first!
+            })}.subscribe(onNext: { [weak self] (track) in
+                let trackVC = TrackViewController.init(service: self!.service, track: track)
+                self?.navigationController?.pushViewController(trackVC, animated: true)
+            }).disposed(by: self.disposeBag)
     }
 
 }
