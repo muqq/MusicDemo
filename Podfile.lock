@@ -20,6 +20,11 @@ PODS:
   - RxRealm (0.7.5):
     - RealmSwift (~> 3.0)
     - RxSwift (~> 4.0)
+  - RxRealmDataSources (0.2.9):
+    - RealmSwift (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxRealm (~> 0.7.3)
+    - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
@@ -32,6 +37,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxDataSources
   - RxRealm
+  - RxRealmDataSources
   - RxSwift
   - SDWebImage
   - SnapKit
@@ -46,6 +52,7 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxRealm
+    - RxRealmDataSources
     - RxSwift
     - SDWebImage
     - SnapKit
@@ -59,10 +66,11 @@ SPEC CHECKSUMS:
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
+  RxRealmDataSources: 798303f1d7db18d80da9e95bab9605010378040e
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 5457a1df89d0a72706f324758e14b1e8c79b7afd
+PODFILE CHECKSUM: c9ea2d709943e248a5b5e8356365a87bf78b5927
 
 COCOAPODS: 1.5.3

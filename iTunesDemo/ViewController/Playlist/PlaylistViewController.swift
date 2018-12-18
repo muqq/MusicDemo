@@ -35,11 +35,7 @@ class PlaylistViewController: BaseViewController, UITableViewDelegate {
     }
     
     private func query() {
-        let realm = AppDelegate.appDelegate().realm!
-        self.APIService.getPlaylists().catchError { (error) -> Observable<[PlayList]> in
-            let result = realm.objects(PlayList.self)
-            return Observable<[PlayList]>.just(Array(result))
-            }.map { (playLists) -> [SectionModel<String, PlayList>] in
+        self.APIService.getPlaylists().map { (playLists) -> [SectionModel<String, PlayList>] in
                 let _ = self.realmManager.add(playLists)
                 return [SectionModel.init(model: "PlayLists", items: playLists)]
             }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)

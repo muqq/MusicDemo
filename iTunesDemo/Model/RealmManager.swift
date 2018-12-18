@@ -8,13 +8,17 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
+import RxRealm
 
 protocol RealmManagerProtocol {
-    func add(object: Object) -> Bool
-    func delete(object: Object) -> Bool
+    func add(object: Object)
+    func delete(object: Object)
+    func queryCollection<T: Object>(type: T.Type) -> Observable<Results<T>>
+    func queryChangeSet<T: Object>(type: T.Type) -> Observable<(AnyRealmCollection<T>, RealmChangeset?)>
     func query<T: Object>() -> Results<T>
-    func add<S: Sequence>(_ objects: S) -> Bool where S.Iterator.Element: Object
-    func delete<S: Sequence>(_ objects: S) -> Bool where S.Iterator.Element: Object
+    func add<S: Sequence>(_ objects: S) where S.Iterator.Element: Object
+    func delete<S: Sequence>(_ objects: S) where S.Iterator.Element: Object
 }
 
 class RealmManager: RealmManagerProtocol {
@@ -23,54 +27,45 @@ class RealmManager: RealmManagerProtocol {
     
     init() {
         self.realm = try! Realm()
-        self.realm.autorefresh = true
     }
     
-    func add(object: Object) -> Bool {
+    func add(object: Object) {
+        let _ = Observable.from(object: object).subscribe(self.realm.rx.add(update: true, onError: nil))
+    }
+    
+    func add<S: Sequence>(_ objects: S) where S.Iterator.Element: Object {
+        let _ = Observable.from(optional: objects).subscribe(self.realm.rx.add(update: true, onError: nil))
+    }
+    
+    func delete(object: Object) {
         do {
-            try self.realm.write { [weak self] in
-                self?.realm.add(object, update: true)
+            try realm.write {
+                realm.delete(object)
             }
-            return true
-        } catch {
-            return false
+        } catch let e {
+            print(e)
         }
     }
     
-    func add<S: Sequence>(_ objects: S) -> Bool where S.Iterator.Element: Object {
+    func delete<S: Sequence>(_ objects: S) where S.Iterator.Element: Object {
         do {
-            try self.realm.write { [weak self] in
-                self?.realm.add(objects, update: true)
+            try realm.write {
+                realm.delete(objects)
             }
-            return true
-        } catch {
-            return false
-        }
-    }
-    
-    func delete(object: Object) -> Bool {
-        do {
-            try self.realm.write { [weak self] in
-                self?.realm.delete(object)
-            }
-            return true
-        } catch {
-            return false
-        }
-    }
-    
-    func delete<S: Sequence>(_ objects: S) -> Bool where S.Iterator.Element: Object {
-        do {
-            try self.realm.write { [weak self] in
-                self?.realm.delete(objects)
-            }
-            return true
-        } catch {
-            return false
+        } catch let e {
+            print(e)
         }
     }
     
     func query<T: Object>() -> Results<T> {
         return realm.objects(T.self)
+    }
+    
+    func queryCollection<T: Object>(type: T.Type) -> Observable<Results<T>> {
+        return Observable.collection(from: realm.objects(T.self))
+    }
+    
+    func queryChangeSet<T: Object>(type: T.Type) -> Observable<(AnyRealmCollection<T>, RealmChangeset?)> {
+        return Observable.changeset(from: realm.objects(T.self))
     }
 }

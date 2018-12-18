@@ -49,7 +49,7 @@ class CategoryDetailViewController: BaseViewController, UITableViewDelegate {
             let result: Results<CategoryDetail> = self.realmManager.query()
             return Observable<CategoryDetail>.just(result.elements.first!)
         }).map { (detail) -> [SectionModel<String, PlayList>] in
-            let _ = self.realmManager.add(object: detail)
+            self.realmManager.add(object: detail)
             return [SectionModel(model: "PlayList", items: Array(detail.playlists!.data))]
         }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
 

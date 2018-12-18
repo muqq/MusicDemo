@@ -11,7 +11,9 @@ import RxSwift
 
 extension API {
     func getPlaylists() -> Observable<[PlayList]> {
-        return self.rxSendRequest(path: Path.featuredPlaylists.rawValue)
+        return self.rxSendRequest(path: Path.featuredPlaylists.rawValue).map { (item: ResponseListItem<[PlayList]>) -> [PlayList] in
+            return item.data!
+        }
     }
     
     func getPlaylist(id: String) -> Observable<[Track]> {

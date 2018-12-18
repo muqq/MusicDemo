@@ -16,7 +16,6 @@
 		A4D0163121C0F4860032C0D3 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0162F21C0F4860032C0D3 /* FavoriteViewController.xib */; };
 		A4D0163421C0F53D0032C0D3 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0163221C0F53D0032C0D3 /* FavoriteTableViewCell.swift */; };
 		A4D0163521C0F53D0032C0D3 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0163321C0F53D0032C0D3 /* FavoriteTableViewCell.xib */; };
-		A4D0163721C10EDA0032C0D3 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0163621C10EDA0032C0D3 /* FavoriteViewModel.swift */; };
 		D022C92E21BF68760052B84D /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C92D21BF68760052B84D /* FavoriteButton.swift */; };
 		D022C93021BF8EDC0052B84D /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */; };
 		D022C93221BFB2610052B84D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C93121BFB2610052B84D /* RealmManager.swift */; };
@@ -71,7 +70,6 @@
 		A4D0162F21C0F4860032C0D3 /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		A4D0163221C0F53D0032C0D3 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		A4D0163321C0F53D0032C0D3 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
-		A4D0163621C10EDA0032C0D3 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		D022C92D21BF68760052B84D /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		D022C92F21BF8EDC0052B84D /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		D022C93121BFB2610052B84D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				A4D0162F21C0F4860032C0D3 /* FavoriteViewController.xib */,
 				A4D0163221C0F53D0032C0D3 /* FavoriteTableViewCell.swift */,
 				A4D0163321C0F53D0032C0D3 /* FavoriteTableViewCell.xib */,
-				A4D0163621C10EDA0032C0D3 /* FavoriteViewModel.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -374,6 +371,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealmDataSources/RxRealmDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -390,6 +388,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealmDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -455,7 +454,6 @@
 				A4D0163021C0F4860032C0D3 /* FavoriteViewController.swift in Sources */,
 				D022C93221BFB2610052B84D /* RealmManager.swift in Sources */,
 				D09FEAE221C0D91D001BD626 /* Favorited.swift in Sources */,
-				A4D0163721C10EDA0032C0D3 /* FavoriteViewModel.swift in Sources */,
 				D0A7380F21B8F76D001864AA /* Image.swift in Sources */,
 				D022C92E21BF68760052B84D /* FavoriteButton.swift in Sources */,
 			);

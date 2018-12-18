@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var service: Service!
-    var realm: Realm!
 
     static func appDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -25,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = .white
         self.service = KKDemoService()
         
-        self.realm = try! Realm()
         
         let _ = self.service.APIService.getToken().subscribe({ [weak self] (event) in
             let categoryViewController = CategoryViewController(service: self!.service)

@@ -16,6 +16,8 @@ extension API {
     }
     
     func getCateogries() -> Observable<[Category]> {
-        return self.rxSendRequest(path: Path.newReleaseCategories.rawValue)
+        return self.rxSendRequest(path: Path.newReleaseCategories.rawValue).map { (item: ResponseListItem<[Category]>) -> [Category] in
+            return item.data!
+        }
     }
 }

@@ -8,7 +8,8 @@ target 'iTunesDemo' do
   pod 'RxDataSources'
   pod 'RxRealm'
   pod 'RxAlamofire'
-  pod 'RealmSwift'
+  pod 'RxRealmDataSources'
+	pod 'RealmSwift'
   pod 'SDWebImage'  
   pod 'SnapKit'
 

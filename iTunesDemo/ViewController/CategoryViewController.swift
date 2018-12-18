@@ -48,11 +48,7 @@ class CategoryViewController: BaseViewController {
     }
     
     private func query() {
-        let realm = AppDelegate.appDelegate().realm!
-        self.APIService.getCateogries().catchError { (error) -> Observable<[Category]> in
-            let result = realm.objects(Category.self)
-            return Observable<[Category]>.just(Array(result))
-            }.map { (categories) -> [SectionModel<String, Category>] in
+        self.APIService.getCateogries().map { (categories) -> [SectionModel<String, Category>] in
                 let _ = self.realmManager.add(categories)
                 return [SectionModel.init(model: "Categories", items: categories)]
             }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
