@@ -10,8 +10,9 @@ import Foundation
 import RxSwift
 
 extension ObservableType {
+    
     public func mapObject<T: Codable>(type: T.Type) -> Observable<T> {
-        return flatMap { data -> Observable<T> in
+        return map { data -> T in
             let responseTuple = data as? (HTTPURLResponse, Data)
             
             guard let jsonData = responseTuple?.1 else {
@@ -25,7 +26,7 @@ extension ObservableType {
             let decoder = JSONDecoder()
             let object = try decoder.decode(T.self, from: jsonData)
             
-            return Observable.just(object)
+            return object
         }
     }
 }
