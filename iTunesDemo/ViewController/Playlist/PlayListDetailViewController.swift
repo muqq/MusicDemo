@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RealmSwift
-import RxDataSources
+import RxRealmDataSources
 import RxCocoa
 import SDWebImage
 
@@ -19,17 +19,16 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
     var disposeBag = DisposeBag()
     let id: String
     
-    let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Track>>(
-        configureCell: { (_, tv, indexPath, element) in
-            let cell = tv.dequeueReusableCell(withIdentifier: "ListTableViewCell")! as! ListTableViewCell
-            cell.item = element
-            if let url = element.album.images.first?.url {
-                cell.iconImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
-            }
-            return cell
-    }, titleForHeaderInSection: { dataSource, sectionIndex in
-        return dataSource[sectionIndex].model
-    })
+    deinit {
+        print("!23123")
+    }
+    
+    private let dataSource = RxTableViewRealmDataSource<Track>( cellIdentifier: "ListTableViewCell", cellType: ListTableViewCell.self) { (cell, ip, track) in
+        cell.item = track
+        if let url = track.album.images.first?.url {
+            cell.iconImageView.sd_setImage(with: URL.init(string: url)!, completed: nil)
+        }
+    }
     
     init(service: Service, id: String) {
         self.id = id
@@ -42,7 +41,7 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        self.tableView.delegate = self
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.register(UINib.init(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "ListTableViewCell")
         self.view.addSubview(self.tableView)
@@ -50,24 +49,21 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
             maker.edges.equalToSuperview()
         }
         
-        self.tableView.rx.itemSelected.map { indexPath in
-            return self.dataSource[indexPath]
-            }.subscribe(onNext: { (track) in
-                let trackViewController = TrackViewController(service: self.service, track: track)
-                self.navigationController?.pushViewController(trackViewController, animated: true)
+        self.tableView.rx.itemSelected.map { [weak self] indexPath in
+            return self!.dataSource.model(at: indexPath)
+            }.subscribe(onNext: { [weak self] (track) in
+                let trackViewController = TrackViewController(service: self!.service, track: track)
+                self?.navigationController?.pushViewController(trackViewController, animated: true)
             }).disposed(by: disposeBag)
         
         self.query()
     }
     
     private func query() {
-        self.APIService.getPlaylist(id: self.id).catchError({ (error) -> Observable<[Track]> in
-            let result: Results<Track> = self.realmManager.query()
-            return Observable<[Track]>.just(Array(result.elements))
-        }).map { [weak self] (tracks) -> [SectionModel<String, Track>] in
-            let _ = self?.realmManager.add(tracks)
-            return [SectionModel.init(model: "Tracks", items: tracks)]
-        }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
+        self.APIService.getPlaylist(id: self.id).flatMap { [weak self] (tracks) -> ObservableChangeSet<Track> in
+            self?.realmManager.add(tracks)
+            return self!.realmManager.queryChangeSet(type: Track.self)
+        }.bind(to: self.tableView.rx.realmChanges(self.dataSource)).disposed(by: self.disposeBag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

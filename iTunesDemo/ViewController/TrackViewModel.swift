@@ -25,7 +25,7 @@ class TrackViewModel: NSObject {
     }
     
     private func isTrackExistInRealm() -> Bool {
-        let favoritedTrack: Results<Favorited> = self.realmManager.query().filter("id = %@", self.track.id)
+        let favoritedTrack: Results<Favorited> = self.realmManager.query(type: Favorited.self).filter("id = %@", self.track.id)
         return favoritedTrack.elements.count != 0
     }
     
@@ -52,7 +52,7 @@ class TrackViewModel: NSObject {
                 favorited.subTitle = self.track.album.artist.name
                 self.realmManager.add(object: favorited)
             } else {
-                let favoritedTrack: Results<Favorited> = self.realmManager.query().filter("id = %@", self.track.id)
+                let favoritedTrack: Results<Favorited> = self.realmManager.query(type: Favorited.self).filter("id = %@", self.track.id)
                 if favoritedTrack.count > 0 {
                     let _ = self.realmManager.delete(object: favoritedTrack.elements.first!)
                 }

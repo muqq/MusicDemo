@@ -17,7 +17,7 @@ protocol RealmManagerProtocol {
     func queryCollection<T: Object>(type: T.Type) -> Observable<Results<T>>
     func queryChangeSet<T: Object>(type: T.Type) -> Observable<(AnyRealmCollection<T>, RealmChangeset?)>
     func queryArray<T: Object>(type: T.Type) -> Observable<Array<T>>
-    func query<T: Object>() -> Results<T>
+    func query<T: Object>(type: T.Type) -> Results<T>
     func add<S: Sequence>(_ objects: S) where S.Iterator.Element: Object
     func delete<S: Sequence>(_ objects: S) where S.Iterator.Element: Object
 }
@@ -60,7 +60,7 @@ class RealmManager: RealmManagerProtocol {
         }
     }
     
-    func query<T: Object>() -> Results<T> {
+    func query<T: Object>(type: T.Type) -> Results<T> {
         return realm.objects(T.self)
     }
     

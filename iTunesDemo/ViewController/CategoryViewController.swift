@@ -39,17 +39,17 @@ class CategoryViewController: BaseViewController {
     }
     
     private func setupRX() {
-        self.tableView.rx.itemSelected.map { indexPath in
-            return self.dataSource[indexPath]
-            }.subscribe(onNext: { (category) in
-                let categoryDetailViewController = CategoryDetailViewController(service: self.service, id: category.id)
-                self.navigationController?.pushViewController(categoryDetailViewController, animated: true)
+        self.tableView.rx.itemSelected.map { [weak self] indexPath in
+            return self!.dataSource[indexPath]
+            }.subscribe(onNext: { [weak self] (category) in
+                let categoryDetailViewController = CategoryDetailViewController(service: self!.service, id: category.id)
+                self?.navigationController?.pushViewController(categoryDetailViewController, animated: true)
             }).disposed(by: disposeBag)
     }
     
     private func query() {
-        self.APIService.getCateogries().map { (categories) -> [SectionModel<String, Category>] in
-                let _ = self.realmManager.add(categories)
+        self.APIService.getCateogries().map { [weak self] (categories) -> [SectionModel<String, Category>] in
+                let _ = self?.realmManager.add(categories)
                 return [SectionModel.init(model: "Categories", items: categories)]
             }.bind(to: self.tableView.rx.items(dataSource: dataSource)).disposed(by: self.disposeBag)
     }
