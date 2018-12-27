@@ -16,9 +16,7 @@ extension API {
         }
     }
     
-    func getPlaylist(id: String) -> Observable<[Track]> {
-        return self.rxSendRequest(path: Path.featuredPlaylists.rawValue + "/\(id)").map { (item: Tracks) -> [Track] in
-            return item.tracks.data
-        }
+    func getPlaylist(id: String) -> Observable<Tracks> {
+        return self.rxSendRequest(path: Path.featuredPlaylists.rawValue + "/\(id)")
     }
 }

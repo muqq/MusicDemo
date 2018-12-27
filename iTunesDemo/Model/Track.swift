@@ -22,34 +22,14 @@ class Track: Object, Codable, ListItemProtocol {
     }
 }
 
-struct Tracks: Codable {
-    let tracks: TrackData!
+class Tracks: Object, Codable {
+    @objc dynamic var tracks: TrackData!
+    @objc dynamic var id: String = ""
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
-struct TrackData: Codable {
-    let data: [Track]
-//    enum CodingKeys: String, CodingKey {
-//        case data
-//    }
-//
-//    required init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self.data = try container.decode(List<Track>.self, forKey: .data)
-//        super.init()
-//    }
-//
-//
-//    required init() {
-//        super.init()
-//    }
-//
-//    required init(value: Any, schema: RLMSchema) {
-//        super.init(value: value, schema: schema)
-//    }
-//
-//    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-//        super.init(realm: realm, schema: schema)
-//    }
-//
-    
+class TrackData: Object, Codable {
+    var data = List<Track>()
 }

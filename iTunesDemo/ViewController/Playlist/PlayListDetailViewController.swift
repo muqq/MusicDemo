@@ -60,10 +60,13 @@ class PlayListDetailViewController: BaseViewController, UITableViewDelegate {
     }
     
     private func query() {
-        self.APIService.getPlaylist(id: self.id).flatMap { [weak self] (tracks) -> ObservableChangeSet<Track> in
-            self?.realmManager.add(tracks)
-            return self!.realmManager.queryChangeSet(type: Track.self)
-        }.bind(to: self.tableView.rx.realmChanges(self.dataSource)).disposed(by: self.disposeBag)
+        self.APIService.getPlaylist(id: self.id).flatMap { [weak self] (tracks) -> ObservableChangeSet<Tracks> in
+            self?.realmManager.add(object: tracks)
+                return self!.realmManager.queryChangeSet(type: Tracks.self)
+            }.flatMap({ (changeSet) -> ObservableChangeSet<Track> in
+                let predicate = NSPredicate.init(format: "id = %@", self.id)
+                return ObservableChangeSet<Track>.just((AnyRealmCollection.init(changeSet.0.filter(predicate).first!.tracks.data), changeSet.1))
+            }).bind(to: self.tableView.rx.realmChanges(self.dataSource)).disposed(by: self.disposeBag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
